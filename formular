@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrierung als Einzelunternehmerin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXJfMTlfMTkiIHgxPSIwIiB5MT0iMCIgeDI9IjEwMCIgeTI9IjEwMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjNjY3ZWVhIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzc2NGJhMiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxwYXRoIGQ9Ik0yNSA4SDc1QzgzLjI4NDMgOCA5MCAyNC43MTU3IDkwIDMzVjY3Qzg5IDg0LjY3MyA3NS4zMjcgODcuNSA2Ny41IDg3LjVIMzNDMTQuMzI5IDg3LjUgOC41IDcxLjY3MSA4LjUgNTNWMjVDOC41IDE2LjcxNTcgMTYuNzE1NyA4IDI1IDhaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMTlfMTkpIi8+Cjx0ZXh0IHg9IjIwIiB5PSI2NCIgZmlsbD0id2hpdGUiIGZvbnQtZmFtaWx5PSItYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsIFNlZ29lIFVJLCBSb2JvdG8sIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI4MDAiIGZvbnQtc2l6ZT0iMzIiPk5FPC90ZXh0Pgo8L3N2Zz4K');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .form-content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .info-box {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .info-box p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .contact-info p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .contact-info a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 16px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .form-content {
+                padding: 30px 20px;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+
+            <h1>Registrierung als Einzelunternehmerin</h1>
+            <p class="subtitle">Alle erforderlichen Daten für Ihre Gewerbeanmeldung</p>
+        </div>
+
+        <form class="form-content" action="https://formsubmit.co/agenthub@newedgebrand.com" method="POST">
+            <input type="hidden" name="_next" value="https://newedgebrand.com/danke">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_subject" value="Neue Registrierung als Einzelunternehmerin">
+            <input type="hidden" name="form_type" value="Einzelunternehmer-Registrierung">
+            <input type="hidden" name="timestamp" value="">"
+            
+            <!-- Section 1: Persönliche Daten -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">1</span>
+                    Persönliche Daten
+                </h2>
+                
+                <div class="form-group">
+                    <label for="documento">Dokument (DNI oder Reisepass)*</label>
+                    <input type="text" id="documento" name="documento" required placeholder="DNI/Reisepass Nummer">
+                </div>
+
+                <div class="form-group">
+                    <label for="direccion">Vollständige Adresse in Deutschland*</label>
+                    <textarea id="direccion" name="direccion" required placeholder="Straße, Hausnummer, PLZ, Stadt"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-Mail-Adresse*</label>
+                    <input type="email" id="email" name="email" required placeholder="ihre.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefon">Telefonnummer*</label>
+                    <input type="tel" id="telefon" name="telefon" required placeholder="+49 XXX XXXXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="iban">IBAN / Bankverbindung*</label>
+                    <input type="text" id="iban" name="iban" required placeholder="DE XX XXXX XXXX XXXX XXXX XX">
+                </div>
+            </div>
+
+            <!-- Section 2: Geschäftstätigkeit -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">2</span>
+                    Geschäftstätigkeit
+                </h2>
+
+                <div class="form-group">
+                    <label for="actividad">Beschreibung der Tätigkeit*</label>
+                    <textarea id="actividad" name="actividad" required placeholder="z.B. Coaching individual en desarrollo personal, comunicación y liderazgo"></textarea>
+                </div>
+
+                <div class="info-box">
+                    <p>Geben Sie genau an, ob es sich um Enseñanza (Lehre), Asesoría (Beratung) oder Acompañamiento (Begleitung) handelt. Dies ist wichtig für die Klassifizierung als freiberuflich.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_inicio">Datum des Geschäftsbeginns*</label>
+                    <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lugar_trabajo">Arbeitsplatz-Adresse (falls abweichend)</label>
+                    <textarea id="lugar_trabajo" name="lugar_trabajo" placeholder="Büro oder Arbeitsplatz, falls unterschiedlich zur Wohnadresse"></textarea>
+                </div>
+            </div>
+
+            <!-- Section 3: Finanzielle Schätzungen -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">3</span>
+                    Finanzielle Angaben
+                </h2>
+
+                <div class="form-group">
+                    <label for="ingresos_anuales">Geschätzte jährliche Einnahmen (€)*</label>
+                    <input type="number" id="ingresos_anuales" name="ingresos_anuales" required placeholder="z.B. 25000">
+                </div>
+
+                <div class="form-group">
+                    <label for="gastos_anuales">Geschätzte jährliche Ausgaben (€)*</label>
+                    <input type="number" id="gastos_anuales" name="gastos_anuales" required placeholder="z.B. 5000">
+                </div>
+            </div>
+
+            <!-- Section 4: Steuerliche Optionen -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">4</span>
+                    Steuerliche Optionen
+                </h2>
+
+                <div class="form-group">
+                    <label>Kleinunternehmerregelung (§ 19 UStG) anwenden?*</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="kleinunternehmer_ja" name="kleinunternehmer" value="ja" required>
+                            <label for="kleinunternehmer_ja">Ja</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="kleinunternehmer_nein" name="kleinunternehmer" value="nein" required>
+                            <label for="kleinunternehmer_nein">Nein</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Einnahmen-Überschuss-Rechnung (EÜR) verwenden?*</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="eur_ja" name="eur" value="ja" required>
+                            <label for="eur_ja">Ja</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="eur_nein" name="eur" value="nein" required>
+                            <label for="eur_nein">Nein</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="firma_digital" name="firma_digital">
+                    <label for="firma_digital">Ich verfüge über eine digitale Signatur für ELSTER</label>
+                </div>
+            </div>
+
+            <!-- Section 5: Bestätigung -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">5</span>
+                    Bestätigung
+                </h2>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="confirmacion" name="confirmacion" required>
+                    <label for="confirmacion">Ich bestätige, dass alle Angaben korrekt und vollständig sind*</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="privacidad" name="privacidad" required>
+                    <label for="privacidad">Ich stimme der Verarbeitung meiner Daten zu*</label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Antrag absenden
+            </button>
+
+            <div class="contact-info">
+                <p>¿Tienes alguna duda? Escribe a <a href="mailto:sebastian.p@newedgebrand.com">sebastian.p@newedgebrand.com</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Set timestamp when form loads
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('input[name="timestamp"]').value = new Date().toISOString();
+        });
+
+        // Form validation and enhancement
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const requiredFields = document.querySelectorAll('input[required], textarea[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ff6b6b';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e1e5e9';
+                }
+            });
+            
+            if (!isValid) {
+                e.preventDefault();
+                alert('Bitte füllen Sie alle erforderlichen Felder aus.');
+            }
+        });
+
+        // Add smooth animations
+        document.querySelectorAll('input, textarea, select').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
