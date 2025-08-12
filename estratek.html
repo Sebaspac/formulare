@@ -5,77 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Estratek - Business Process Automation Readiness Assessment</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
-      background:linear-gradient(135deg,#0f0f23 0%,#1a1a2e 25%,#16213e 75%,#0f0f23 100%);
-      min-height:100vh; padding:20px; color:#fff;
-    }
-    .container { max-width:900px; margin:0 auto; background:rgba(255,255,255,0.05);
-      backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:24px;
-      box-shadow:0 25px 50px rgba(0,0,0,0.3); overflow:hidden;
-    }
-    .header { background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 50%,#06b6d4 100%);
-      color:#fff; padding:50px 40px; text-align:left; position:relative; overflow:hidden;
-    }
-    .header::before{content:'';position:absolute;inset:0;
-      background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-      opacity:.3;}
-    .header-content{position:relative;z-index:1;}
-    .header h1{font-size:3rem;font-weight:800;margin-bottom:15px;letter-spacing:-.03em;
-      background:linear-gradient(135deg,#fff 0%,#e2e8f0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .header .subtitle{font-size:1.3rem;opacity:.95;font-weight:400;margin-bottom:10px;}
-    .header .description{font-size:1rem;opacity:.8;font-weight:300;}
-    .how-it-works{margin-top:30px;}
-    .how-it-works h3{margin:30px 0 15px;font-size:1.2rem;font-weight:600;}
-    .how-it-works p{font-size:1rem;opacity:.9;line-height:1.6;margin:0;text-align:left;}
-    .content{padding:50px 40px;}
-    .category{margin-bottom:40px;border-radius:20px;background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.08);overflow:hidden;transition:.4s ease;}
-    .category:hover{transform:translateY(-4px);background:rgba(255,255,255,0.06);
-      border-color:rgba(99,102,241,0.3);box-shadow:0 20px 40px rgba(99,102,241,0.1);}
-    .category-header{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);
-      color:#fff;padding:25px 30px;font-size:1.4rem;font-weight:700;position:relative;overflow:hidden;}
-    .category-header::after{content:'';position:absolute;top:0;right:-50px;width:100px;height:100%;
-      background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.1) 50%,transparent 100%);transform:skewX(-20deg);}
-    .category-content{padding:35px 30px;}
-    .checklist-item{display:flex;align-items:flex-start;margin-bottom:20px;padding:18px 20px;border-radius:16px;transition:.3s ease;cursor:pointer;border:1px solid rgba(255,255,255,0.05);}
-    .checklist-item:hover{background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.2);transform:translateX(8px);}
-    .checkbox{position:relative;margin-right:18px;margin-top:3px;}
-    .checkbox input[type="checkbox"]{width:22px;height:22px;border:2px solid rgba(255,255,255,0.3);border-radius:8px;appearance:none;cursor:pointer;transition:.3s ease;background:rgba(255,255,255,0.05);}
-    .checkbox input[type="checkbox"]:checked{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);border-color:#6366f1;transform:scale(1.1);}
-    .checkbox input[type="checkbox"]:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-weight:bold;font-size:14px;}
-    .checkbox-label{font-size:1.05rem;line-height:1.6;color:rgba(255,255,255,0.9);font-weight:400;cursor:pointer;}
-    .score-section{background:linear-gradient(135deg,rgba(99,102,241,0.15) 0%,rgba(139,92,246,0.15) 100%);border:1px solid rgba(99,102,241,0.2);border-radius:20px;padding:40px;text-align:left;margin:40px 0;backdrop-filter:blur(10px);}
-    .score-text{font-size:1.3rem;color:rgba(255,255,255,0.9);margin-bottom:25px;font-weight:600;}
-    .score-bar{width:100%;height:24px;background:rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);margin-bottom:15px;}
-    .score-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#ef4444 0%,#f97316 25%,#eab308 50%,#22c55e 75%,#6366f1 100%);border-radius:12px;transition:.6s ease;position:relative;overflow:hidden;}
-    .score-bar-fill::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.3) 50%,transparent 100%);animation:shimmer 2s infinite;}
-    @keyframes shimmer{0%{left:-100%;}100%{left:100%;}}
-    .score-percentage{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;}
-    .score-fraction{font-size:1.1rem;color:rgba(255,255,255,0.8);margin-bottom:15px;font-weight:500;}
-    .score-description{font-size:1.1rem;color:rgba(255,255,255,0.7);font-style:italic;line-height:1.5;}
-    .form-section{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:40px;margin-top:40px;}
-    .form-section h3{margin-bottom:25px;color:rgba(255,255,255,0.95);font-size:1.5rem;font-weight:700;}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
-    .form-group{margin-bottom:25px;}
-    .form-group label{display:block;margin-bottom:10px;font-weight:600;color:rgba(255,255,255,0.9);font-size:1rem;}
-    .form-group input,.form-group textarea{width:100%;padding:16px 20px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:12px;font-size:1rem;color:rgba(255,255,255,0.9);transition:.3s ease;}
-    .form-group input:focus,.form-group textarea:focus{outline:none;border-color:#6366f1;background:rgba(255,255,255,0.08);box-shadow:0 0 0 3px rgba(99,102,241,0.1);}
-    .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.5);}
-    .submit-btn{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);color:#fff;border:none;padding:20px 50px;border-radius:16px;font-size:1.2rem;font-weight:700;cursor:pointer;transition:.3s ease;width:100%;position:relative;overflow:hidden;}
-    .submit-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.2) 50%,transparent 100%);transition:left .6s ease;}
-    .submit-btn:hover::before{left:100%;}
-    .submit-btn:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(99,102,241,0.4);}
-    .submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-    .progress-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,#6366f1 0%,#8b5cf6 100%);transition:width .3s ease;z-index:1000;}
-    @media (max-width:768px){
-      .header h1{font-size:2.2rem;}
-      .content{padding:30px 20px;}
-      .category-content{padding:25px 20px;}
-      .form-row{grid-template-columns:1fr;gap:0;}
-      .header{padding:40px 20px;}
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:linear-gradient(135deg,#0f0f23 0%,#1a1a2e 25%,#16213e 75%,#0f0f23 100%);min-height:100vh;padding:20px;color:#fff}
+    .container{max-width:900px;margin:0 auto;background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:24px;box-shadow:0 25px 50px rgba(0,0,0,.3);overflow:hidden}
+    .header{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 50%,#06b6d4 100%);color:#fff;padding:50px 40px;position:relative;overflow:hidden}
+    .header::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');opacity:.3}
+    .header-content{position:relative;z-index:1}
+    .header h1{font-size:3rem;font-weight:800;margin-bottom:15px;letter-spacing:-.03em;background:linear-gradient(135deg,#fff 0%,#e2e8f0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .subtitle{font-size:1.3rem;opacity:.95;margin-bottom:10px}
+    .description{font-size:1rem;opacity:.8}
+    .how-it-works{margin-top:30px}
+    .how-it-works h3{margin:30px 0 15px;font-size:1.2rem;font-weight:600}
+    .how-it-works p{font-size:1rem;opacity:.9;line-height:1.6;text-align:left}
+    .content{padding:50px 40px}
+    .category{margin-bottom:40px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);overflow:hidden;transition:.4s}
+    .category:hover{transform:translateY(-4px);background:rgba(255,255,255,.06);border-color:rgba(99,102,241,.3);box-shadow:0 20px 40px rgba(99,102,241,.1)}
+    .category-header{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);color:#fff;padding:25px 30px;font-size:1.4rem;font-weight:700;position:relative}
+    .category-header::after{content:'';position:absolute;top:0;right:-50px;width:100px;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.1) 50%,transparent 100%);transform:skewX(-20deg)}
+    .category-content{padding:35px 30px}
+    .checklist-item{display:flex;align-items:flex-start;margin-bottom:20px;padding:18px 20px;border-radius:16px;cursor:pointer;border:1px solid rgba(255,255,255,.05);transition:.3s}
+    .checklist-item:hover{background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.2);transform:translateX(8px)}
+    .checkbox{position:relative;margin-right:18px;margin-top:3px}
+    .checkbox input[type="checkbox"]{width:22px;height:22px;border:2px solid rgba(255,255,255,.3);border-radius:8px;appearance:none;cursor:pointer;transition:.3s;background:rgba(255,255,255,.05)}
+    .checkbox input[type="checkbox"]:checked{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);border-color:#6366f1;transform:scale(1.1)}
+    .checkbox input[type="checkbox"]:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-weight:700;font-size:14px}
+    .checkbox-label{font-size:1.05rem;line-height:1.6;color:rgba(255,255,255,.9);cursor:pointer}
+    .score-section{background:linear-gradient(135deg,rgba(99,102,241,.15) 0%,rgba(139,92,246,.15) 100%);border:1px solid rgba(99,102,241,.2);border-radius:20px;padding:40px;margin:40px 0}
+    .score-text{font-size:1.3rem;margin-bottom:25px;font-weight:600}
+    .score-bar{width:100%;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.2);margin-bottom:15px}
+    .score-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#ef4444 0%,#f97316 25%,#eab308 50%,#22c55e 75%,#6366f1 100%);border-radius:12px;transition:.6s;position:relative;overflow:hidden}
+    .score-bar-fill::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.3) 50%,transparent 100%);animation:shimmer 2s infinite}
+    @keyframes shimmer{0%{left:-100%}100%{left:100%}}
+    .score-percentage{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
+    .score-fraction{font-size:1.1rem;color:rgba(255,255,255,.8);margin-bottom:15px}
+    .score-description{font-size:1.1rem;color:rgba(255,255,255,.7);font-style:italic;line-height:1.5}
+    .actions{margin-top:30px}
+    .submit-btn{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);color:#fff;border:none;padding:20px 50px;border-radius:16px;font-size:1.2rem;font-weight:700;cursor:pointer;transition:.3s;width:100%;position:relative;overflow:hidden}
+    .submit-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.2) 50%,transparent 100%);transition:left .6s}
+    .submit-btn:hover::before{left:100%}
+    .submit-btn:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(99,102,241,.4)}
+    .submit-btn:disabled{opacity:.6;cursor:not-allowed}
+    .progress-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,#6366f1 0%,#8b5cf6 100%);transition:width .3s;z-index:1000}
+    @media (max-width:768px){.header h1{font-size:2.2rem}.content{padding:30px 20px}.category-content{padding:25px 20px}}
   </style>
 </head>
 <body>
@@ -87,20 +58,17 @@
         <h1>Estratek</h1>
         <div class="subtitle">Business Process Automation Readiness Assessment</div>
         <div class="description">Self-assessment tool for companies to identify automation gaps and hidden inefficiencies</div>
-
         <div class="how-it-works">
           <h3>How it works:</h3>
-          <p>
-            Review each automation capability below and check the boxes for processes your company has already implemented.
-            Watch your automation maturity score build in real-time. At the end, you’ll get a personalized report by email.
-          </p>
+          <p>Check everything you already have in place. Your score updates live. Click “Send Assessment” to email the results.</p>
         </div>
       </div>
     </div>
 
     <div class="content">
+      <!-- Wir behalten ein <form>, aber ohne extra Felder -->
       <form id="automationForm">
-        <!-- ===== CHECKLISTS (unchanged) ===== -->
+        <!-- === Kategorien / Checklisten (unverändert) === -->
         <div class="category">
           <div class="category-header">Marketing, Sales & Lead Management</div>
           <div class="category-content">
@@ -168,55 +136,15 @@
         </div>
 
         <div class="score-section">
-          <div class="score-text" id="scoreText">Your Automation Maturity Score</div>
-          <div class="score-bar" id="scoreBar"><div class="score-bar-fill" id="scoreBarFill"></div></div>
+          <div class="score-text">Your Automation Maturity Score</div>
+          <div class="score-bar"><div class="score-bar-fill" id="scoreBarFill"></div></div>
           <div class="score-percentage" id="scorePercentage">0%</div>
           <div class="score-fraction" id="scoreFraction">0 of 32 capabilities implemented</div>
           <div class="score-description" id="scoreDescription">Select items to see your assessment results</div>
         </div>
 
-        <div class="scoring-guide">
-          <h3>Scoring Guide</h3>
-          <p><strong>0-10 checks →</strong> Huge automation potential - most processes are still manual.</p>
-          <p><strong>11-25 checks →</strong> Good foundation - but automation coverage is incomplete.</p>
-          <p><strong>25-32 checks →</strong> Highly automated - your organization operates at advanced efficiency levels.</p>
-        </div>
-
-        <div class="form-section">
-          <h3>Get Your Detailed Assessment Report</h3>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="companyName">Company Name *</label>
-              <input type="text" id="companyName" required>
-            </div>
-            <div class="form-group">
-              <label for="contactName">Contact Person *</label>
-              <input type="text" id="contactName" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="industry">Industry</label>
-            <input type="text" id="industry" placeholder="e.g., Technology, Manufacturing, Healthcare">
-          </div>
-          <div class="form-group">
-            <label for="companySize">Company Size</label>
-            <input type="text" id="companySize" placeholder="e.g., 10-50 employees, 100-500 employees">
-          </div>
-          <div class="form-group">
-            <label for="notes">Additional Notes</label>
-            <textarea id="notes" rows="4" placeholder="Tell us about your specific automation challenges or goals..."></textarea>
-          </div>
-          <button type="submit" class="submit-btn" id="submitBtn">Send Results & Request Consultation</button>
+        <div class="actions">
+          <button type="submit" class="submit-btn" id="submitBtn">Send Assessment</button>
         </div>
       </form>
     </div>
@@ -244,16 +172,9 @@
 
         let description = '';
         let barColor = '';
-        if (checkedCount <= 10) {
-          description = 'Huge automation potential - most processes are still manual.';
-          barColor = 'linear-gradient(90deg, #ef4444 0%, #f97316 100%)';
-        } else if (checkedCount <= 25) {
-          description = 'Good foundation - but automation coverage is incomplete.';
-          barColor = 'linear-gradient(90deg, #f97316 0%, #eab308 100%)';
-        } else {
-          description = 'Highly automated - your organization operates at advanced efficiency levels.';
-          barColor = 'linear-gradient(90deg, #22c55e 0%, #6366f1 100%)';
-        }
+        if (checkedCount <= 10) { description = 'Huge automation potential - most processes are still manual.'; barColor = 'linear-gradient(90deg, #ef4444 0%, #f97316 100%)'; }
+        else if (checkedCount <= 25) { description = 'Good foundation - but automation coverage is incomplete.'; barColor = 'linear-gradient(90deg, #f97316 0%, #eab308 100%)'; }
+        else { description = 'Highly automated - your organization operates at advanced efficiency levels.'; barColor = 'linear-gradient(90deg, #22c55e 0%, #6366f1 100%)'; }
         scoreDescription.textContent = description;
         scoreBarFill.style.background = barColor;
       }
@@ -273,7 +194,7 @@
         e.preventDefault();
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
+        submitBtn.textContent = 'Sending…';
 
         const checkedItems = Array.from(document.querySelectorAll('input[name="checklist"]:checked')).map(c => c.value);
         const score = checkedItems.length;
@@ -281,25 +202,17 @@
         const percentage = Math.round((score / totalItems) * 100);
 
         const assessmentData = {
-          companyName: document.getElementById('companyName').value.trim(),
-          contactName: document.getElementById('contactName').value.trim(),
-          email: document.getElementById('email').value.trim(),
-          phone: (document.getElementById('phone').value || 'Not provided').trim(),
-          industry: (document.getElementById('industry').value || 'Not specified').trim(),
-          companySize: (document.getElementById('companySize').value || 'Not specified').trim(),
-          notes: (document.getElementById('notes').value || 'No additional notes provided').trim(),
-          score,
-          totalItems,
-          percentage,
+          score, totalItems, percentage,
+          assessment: score <= 10 ? 'Huge automation potential - most processes are still manual.'
+                   : score <= 25 ? 'Good foundation - but automation coverage is incomplete.'
+                   : 'Highly automated - the organization operates at advanced efficiency levels.',
           checkedItems,
-          assessment:
-            score <= 10 ? 'Huge automation potential - most processes are still manual.' :
-            score <= 25 ? 'Good foundation - but automation coverage is incomplete.' :
-            'Highly automated - the organization operates at advanced efficiency levels.',
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
+          pageUrl: location.href,
+          userAgent: navigator.userAgent
         };
 
-        // === Echtes Formular für FormSubmit bauen (folgt Redirect, kein CORS) ===
+        // echtes, verstecktes Formular -> folgt Redirect, kein CORS
         const f = document.createElement('form');
         f.method = 'POST';
         f.action = 'https://formsubmit.co/agenthub@newedgebrand.com';
@@ -307,40 +220,25 @@
 
         const add = (name, value) => {
           const i = document.createElement('input');
-          i.type = 'hidden';
-          i.name = name;
-          i.value = String(value);
+          i.type = 'hidden'; i.name = name; i.value = String(value);
           f.appendChild(i);
         };
 
-        // FormSubmit Optionen
-        add('_subject', `Automation Assessment – ${assessmentData.companyName} (${assessmentData.percentage}%)`);
+        add('_subject', `Automation Assessment – ${assessmentData.percentage}%`);
         add('_template', 'table');
-        add('_replyto', assessmentData.email);
-        // Optional: eigene Danke-Seite aktivieren
+        // eigene Danke-Seite optional aktivieren:
         // add('_next', 'https://deine-domain.tld/thank-you.html');
 
-        // Honeypot gegen Spam
-        add('_honey', ''); // leer lassen
-
-        // Felder
-        add('company', assessmentData.companyName);
-        add('contact', assessmentData.contactName);
-        add('email', assessmentData.email);
-        add('phone', assessmentData.phone);
-        add('industry', assessmentData.industry);
-        add('company_size', assessmentData.companySize);
         add('score', `${assessmentData.score} of ${assessmentData.totalItems} (${assessmentData.percentage}%)`);
         add('assessment', assessmentData.assessment);
         add('implemented_automations', '• ' + assessmentData.checkedItems.join('\n• '));
-        add('notes', assessmentData.notes);
         add('timestamp', assessmentData.timestamp);
-
-        // Vollständiger Payload als JSON (zur Sicherheit)
+        add('page_url', assessmentData.pageUrl);
+        add('user_agent', assessmentData.userAgent);
         add('full_payload_json', JSON.stringify(assessmentData));
 
         document.body.appendChild(f);
-        f.submit(); // Browser navigiert zur Bestätigungs-/Danke-Seite
+        f.submit();
       });
     });
   </script>
